@@ -9,14 +9,12 @@ library(readxl)
 theme_set(theme_pubr())
 
 
-#Import data
+
 nfl_df <- read_excel(file.choose())
 head(nfl_df)
-
-#Summarize Data
 summary(nfl_df)
 
-#Scatter Plot
+
 pairs(~OffPassYds + Win + DefYds, data=nfl_df)
 
 #Regression Model
