@@ -1,1 +1,90 @@
+import pandas
+clothesdf=pandas.read_csv("inventory2.csv")
+pantslist = list(clothesdf.Pants)
+clotheslist = list(clothesdf.Clothes)
+shoeslist = list(clothesdf.Shoes)
+def greet_user(greeting,sentinel,categoryq,readyq):
+    canswer = ' '
+    ranswer = sentinel
+    print(greeting)
+    while ranswer == sentinel:
+        canswer = input(categoryq)
+        ranswer = input(readyq)
+    if canswer == "Pants":
+        pants("Welcome to our Pants section! Here are your choices:",pantslist,"Which pair of pants would you like or enter None? ")
+    elif canswer == "Shoes":
+         pants("Welcome to our Shoes section! Here are your choices:",shoeslist,"Which pair of shoes would you like or enter None? ")
+    elif canswer == "Clothes":
+        tops("Welcome to our Clothes section!  Here are your choices:",clotheslist,"Which type of clothing would you like or enter None? ")
+    else:
+        print('Sorry, we do not carry that category.  See you next time!')
 
+
+#Function ask user to pick Pants
+def pants(greeting,selection,pickq):
+    print(greeting)
+    for item in selection:
+        print(item)
+    pantspick = input(pickq)
+    if pantspick == "None":
+        print("Goodbye")
+    elif pantspick == "Sweats":
+        closing("Sweats",15,"Enjoy your Sweats!" )
+    elif pantspick == "Shorts":
+        closing("Shorts",20,"Enjoy your Shorts!" )
+    elif pantspick == "Pajamas":
+        closing("Pajamas",25,"Enjoy your Pajamas" )
+    elif pantspick == "Jeans":
+        closing("Jeans",30,"Enjoy your Jeans!" )
+    else:
+        closing("Joggers",35,"Enjoy your Joggers!" )
+        
+def tops(greeting,selection,pickq):
+    print(greeting)
+    for item in selection:
+        print(item)
+    toppick = input(pickq)
+    if toppick == "None":
+        print("Goodbye")
+    elif toppick == "Shirt":
+        closing("Shirt",15,"Enjoy your Shirt!" )
+    elif toppick == "Hoodie":
+        closing("Hoodie",20,"Enjoy your Hoodie!" )
+    elif toppick == "Sweater":
+        closing("Sweater",25,"Enjoy your Sweater!" )
+    elif toppick == "Tanktop":
+        closing("Tanktop",30,"Enjoy your Tanktop!" )
+    else:
+        closing("Longsleeve",35,"Enjoy your Longsleeve!" )
+
+def shoes(greeting,selection,pickq):
+    print(greeting)
+    for item in selection:
+        print(item)
+    shoespick = input(pickq)
+    if shoespick == "None":
+        print("Goodbye")
+    elif shoespick == "Slides":
+        closing("Slides",15,"Enjoy your Slides!" )
+    elif shoespick == "Converses":
+        closing("Converses",20,"Enjoy your Converses!" )
+    elif shoespick == "Jordans":
+        closing("Jordans",25,"Enjoy your Jordans!" )
+    elif shoespick == "Vans":
+        closing("Vans",30,"Enjoy your Vans!" )
+    else:
+        closing("Highheels",35,"Enjoy your Highheels!" )
+
+#Function to give user total price of purchase
+def closing(pickeditem,price,goodbye):
+    print("Your cost for the",pickeditem,"is $"+str(price))
+    more = input("Would you like to pick another item (y/n)?")
+    if more == "y":
+        greet_user("Great!", "n", "What category would you like to browse (Pants, Clothes, Shoes)? ", "Ready to browse (y/n)? ")
+    else:
+        for l in goodbye:
+            print(l)
+
+
+
+greet_user("Welcome to our store", "n", "What category would you like to browse (Pants, Clothes,Shoes)? ", "Ready to browse (y/n)? ")
